@@ -2,10 +2,10 @@ SERVICE_NAME := api
 GENERATED_DOCKER_IMAGES := $(shell docker images | grep $(SERVICE_NAME) | awk '{print $$1}')
 
 svc-up:
-	docker-compose -p $(SERVICE_NAME) up --build -d
+	docker-compose -p $(SERVICE_NAME) up --build -d app database
 
 svc-test:
-	docker-compose -p $(SERVICE_NAME) exec app ./scripts/test.sh
+	docker-compose -p $(SERVICE_NAME) up --build -d test database
 
 svc-down:
 	docker-compose -p $(SERVICE_NAME) down -v --remove-orphans

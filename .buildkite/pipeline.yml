@@ -1,0 +1,19 @@
+steps:
+  - label: "Build test images"
+    agents:
+      queue: "default"
+    plugins:
+      - docker-compose#v4.5.0:
+          build: database
+          upload-container-logs: always
+
+  - wait
+
+  - label: "Running test"
+    agents:
+      queue: "default"
+    plugins:
+      - docker-compose#v4.5.0:
+          run: test
+          config: docker-compose.yml
+          upload-container-logs: always
