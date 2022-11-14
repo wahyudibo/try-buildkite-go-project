@@ -37,7 +37,5 @@ func (h *Handler) Handler(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.Status(http.StatusOK).JSON(&fiber.Map{
-		"user": user,
-	})
+	return c.Status(http.StatusOK).JSON(user)
 }

@@ -5,7 +5,6 @@ svc-up:
 	docker-compose -p $(SERVICE_NAME) up --build -d
 
 svc-test:
-	make svc-up && \
 	docker-compose -p $(SERVICE_NAME) exec app ./scripts/test.sh
 
 svc-down:
